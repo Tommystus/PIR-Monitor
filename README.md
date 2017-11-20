@@ -23,7 +23,10 @@ Set hbCycle to zero to disable hear beat mqtt message.  Maximum deep sleep timeo
 
 To enable wifi, hard set PIR signal to active.  This will prevent application from going to sleep and enable wifi to allow for script or configuration update remotely.
 
-With the wired circuit, please make sure PIR signal is grounded before starting flash.  Accidental PIR signal will trigger reset and stop flash.
+Here is the circuit for this application:
+![PIR sleep interrupt](https://github.com/Tommystus/PIR-Monitor/raw/master/ESP8266%20PIR%20Sleep%20Interrupt%20Circuit.png)
+
+With the circuit above, please make sure PIR signal is grounded before starting flash.  Accidental PIR signal will trigger reset and stop flash.
 
 ## Current issue:
 If PIR is close or next to ESP8266, signal interference from the controler may cause false trigger on the PIR sensor.  I've been able to get around this by using aluminum foil as shielding material around PIR module.
