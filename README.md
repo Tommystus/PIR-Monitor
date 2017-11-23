@@ -19,7 +19,7 @@ mos build --arch esp8266
 mos flash
 mos config-set pir.devName=<my device name> pir.dsTimeout=<seconds> pir.hbCycle=12
 ```
-Set hbCycle to zero to disable hear beat mqtt message.  Maximum deep sleep timeout is about 50 minutes (? need to check).
+Set hbCycle to zero to disable heart beat mqtt message.  Maximum deep sleep timeout is about 50 minutes (? need to check).
 
 To enable wifi, hard set PIR signal to active.  This will prevent application from going to sleep and enable wifi to allow for script or configuration update remotely.
 

@@ -46,21 +46,23 @@ if ((rsCode === 6) || (rsCode === 5)) {
 
 if (!pirLevel) {
 	let hbCycle = Cfg.get('pir.hbCycle');
-	// check heartBeat counter stored in RTC Memory
-	let rc = rtcRdInt(memIdx);
-	// counter reset every 12*5 = 60min
-	// also reset random value at pwr on
-	if ((rc < 0) || (rc > hbCycle)) {
-		if ((rc > 0) && (rc < hbCycle + 2)) {
-			heartBeat = 1;
+	if (hbCycle) {
+		// check heartBeat counter stored in RTC Memory
+		let rc = rtcRdInt(memIdx);
+		// at 12 cycle and 5 min sleep, counter reset every 12*5 = 60min
+		// also reset random value at pwr on
+		if ((rc < 0) || (rc > hbCycle)) {
+			if ((rc > 0) && (rc < hbCycle + 2)) {
+				heartBeat = 1;
+			}
+			rc = 0;
+		} else {
+			rc++;
+			// save count in RTC memory 
+			rtcWrInt( memIdx, rc);
 		}
-		rc = 0;
-	} else {
-		rc++;
-		// save count in RTC memory 
-		rtcWrInt( memIdx, rc);
+		print( "**heartBeat rc:", JSON.stringify(rc));
 	}
-	print( "**heartBeat rc:", JSON.stringify(rc));
 }
 
 GPIO.set_mode(ledPin, GPIO.MODE_OUTPUT);
